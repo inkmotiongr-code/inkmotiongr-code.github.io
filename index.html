@@ -7,26 +7,30 @@
 <title>INK MOTION GR | Digital Card</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(circle at top,#421634,#10121b 55%,#080910);color:white;font-family:Arial,sans-serif}
-.card{max-width:450px;margin:30px auto;padding:22px;background:#191b26;border:1px solid #393747;border-radius:24px}
+body{margin:0;background:radial-gradient(circle at top,#421634,#10121b 55%,#080910);color:#fff;font-family:Arial,sans-serif}
+.card{max-width:450px;margin:25px auto;padding:20px;background:#191b26;border:1px solid #393747;border-radius:24px}
 .lang{text-align:right}
-select{background:#292b39;color:white;border:1px solid #4c4c60;border-radius:10px;padding:9px;max-width:155px}
-header{text-align:center;padding:15px 0}
-.logo{display:block;width:100%;max-height:220px;object-fit:contain}
-.fallback{font-size:32px;font-weight:900;color:#f32491}
+select{background:#292b39;color:#fff;border:1px solid #4c4c60;border-radius:10px;padding:8px;font-size:12px;max-width:145px}
+header{text-align:center;padding:12px 0 18px}
+.logo{width:100%;max-height:230px;object-fit:contain}
+.fallback{font-size:30px;font-weight:900;color:#f32491}
 .tag{font-size:12px;letter-spacing:2px;color:#ddd}
-.place{color:#ccc;font-size:14px;margin-top:12px}
-.buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
-.buttons a{background:#2d3040;color:white;text-decoration:none;text-align:center;border-radius:12px;padding:17px 5px;font-weight:bold}
+.buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.buttons a{background:#2d3040;color:#fff;text-decoration:none;text-align:center;border-radius:12px;padding:16px 5px;font-weight:bold}
 .buttons a:hover{background:#46495d}
 .buttons .save{grid-column:span 2;background:#dc168b}
-h2{font-size:19px;margin-top:30px}
-p{font-size:14px;color:#d1d1dc;line-height:1.7}
-.qr{text-align:center;background:#252633;padding:18px;border-radius:15px;margin-top:24px}
-#qrcode{display:flex;justify-content:center;margin:15px}
-#qrcode img{border:12px solid white;border-radius:8px;max-width:100%}
-small{color:#aaa}
-@media(max-width:480px){.card{margin:10px;padding:17px}}
+h2{font-size:19px;margin:28px 0 15px}
+.service{display:flex;align-items:flex-start;gap:13px;padding:12px 5px;border-bottom:1px solid #30313f}
+.ico{background:#342238;color:#f02a9b;border-radius:11px;min-width:43px;height:43px;display:flex;align-items:center;justify-content:center;font-size:23px}
+.service strong{display:block;font-size:14px;margin-bottom:5px}
+.service span{font-size:12px;color:#c5c6d2;line-height:1.6}
+.offer{font-size:13px;color:#e5c9dc;text-align:center;margin:25px 0;line-height:1.7}
+.qr{text-align:center;background:#252633;padding:16px;border-radius:15px;margin-top:20px}
+.qr h2{font-size:15px;margin:0 0 12px}
+#qrcode{display:flex;justify-content:center}
+#qrcode img{border:9px solid white;border-radius:7px}
+small{display:block;color:#aaa;margin-top:12px;font-size:11px}
+@media(max-width:480px){.card{margin:10px;padding:16px}}
 </style>
 </head>
 <body>
@@ -46,7 +50,6 @@ small{color:#aaa}
 <img class="logo" src="logo.png" alt="INK MOTION GR" onerror="this.style.display='none';document.querySelector('.fallback').hidden=false">
 <div class="fallback" hidden>INK MOTION GR</div>
 <p class="tag">DESIGN · PRINT · ADVERTISING</p>
-<div class="place" id="place">📍 Θεσσαλονίκη, Ελλάδα</div>
 </header>
 <section class="buttons">
 <a href="tel:+306945023217" id="call">☎ Κλήση</a>
@@ -58,45 +61,84 @@ small{color:#aaa}
 <a href="#" class="save" id="save">▣ Αποθήκευση επαφής</a>
 </section>
 <h2 id="heading">Υπηρεσίες</h2>
-<p id="services">Γραφιστικός σχεδιασμός · Εκτυπώσεις · Διαφημιστικές εφαρμογές · Αυτοκόλλητα · Επαγγελματικές κάρτες · Ετικέτες · Custom T-shirts</p>
+<div id="services"></div>
+<p class="offer" id="offer">Έχετε κάποια ιδέα; Επικοινωνήστε μαζί μας για μια εξατομικευμένη προσφορά.</p>
 <div class="qr">
-<h2 id="qrheading">Σκάναρε την ψηφιακή κάρτα</h2>
+<h2 id="qrheading">Κοινοποίηση ψηφιακής κάρτας</h2>
 <div id="qrcode"></div>
-<small id="qrnote">QR προς αυτή την ιστοσελίδα</small>
+<small id="qrnote">Σκάναρε το QR για να ανοίξεις την κάρτα.</small>
 </div>
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-const translations={
-el:["☎ Κλήση","▣ Αποθήκευση επαφής","Υπηρεσίες","Γραφιστικός σχεδιασμός · Εκτυπώσεις · Διαφημιστικές εφαρμογές · Αυτοκόλλητα · Επαγγελματικές κάρτες · Ετικέτες · Custom T-shirts","📍 Θεσσαλονίκη, Ελλάδα","Σκάναρε την ψηφιακή κάρτα"],
-en:["☎ Call","▣ Save contact","Services","Graphic design · Printing · Advertising applications · Stickers · Business cards · Labels · Custom T-shirts","📍 Thessaloniki, Greece","Scan the digital card"],
-bg:["☎ Обаждане","▣ Запази контакт","Услуги","Графичен дизайн · Печат · Рекламни приложения · Стикери · Визитки · Етикети · Тениски по поръчка","📍 Солун, Гърция","Сканирай дигиталната визитка"],
-de:["☎ Anrufen","▣ Kontakt speichern","Leistungen","Grafikdesign · Druck · Werbetechnik · Aufkleber · Visitenkarten · Etiketten · Individuelle T-Shirts","📍 Thessaloniki, Griechenland","Digitale Visitenkarte scannen"],
-ru:["☎ Позвонить","▣ Сохранить контакт","Услуги","Графический дизайн · Печать · Рекламное оформление · Наклейки · Визитки · Этикетки · Футболки на заказ","📍 Салоники, Греция","Сканируйте цифровую визитку"],
-hy:["☎ Զանգահարել","▣ Պահպանել կոնտակտը","Ծառայություններ","Գրաֆիկական դիզայն · Տպագրություն · Գովազդային ձևավորում · Կպչուն պիտակներ · Այցեքարտեր · Պիտակներ · Անհատականացված շապիկներ","📍 Սալոնիկ, Հունաստան","Սկանավորեք թվային այցեքարտը"],
-sq:["☎ Telefono","▣ Ruaj kontaktin","Shërbimet","Dizajn grafik · Printime · Aplikime publicitare · Ngjitëse · Kartëvizita · Etiketa · Bluza të personalizuara","📍 Selanik, Greqi","Skano kartëvizitën digjitale"]
+const data={
+el:{
+call:"☎ Κλήση",save:"▣ Αποθήκευση επαφής",heading:"Υπηρεσίες",
+titles:["Γραφιστικός Σχεδιασμός","Εκτυπώσεις","Διαφημιστικά Είδη & Δώρα","Εκτυπώσεις Ενδυμάτων","Διαφημιστικές Εφαρμογές"],
+desc:["Λογότυπα · Εταιρική ταυτότητα · Social Media","Επαγγελματικές κάρτες · Φυλλάδια · Έντυπα · Ετικέτες","Στυλό · Κούπες · Μπρελόκ · Αναπτήρες · Καπέλα","T-shirts · Φούτερ · Επαγγελματική ένδυση","Αυτοκόλλητα · Επιγραφές · Σήμανση οχημάτων"],
+offer:"Έχετε κάποια ιδέα; Επικοινωνήστε μαζί μας για μια εξατομικευμένη προσφορά.",qr:"Κοινοποίηση ψηφιακής κάρτας",note:"Σκάναρε το QR για να ανοίξεις την κάρτα."},
+en:{
+call:"☎ Call",save:"▣ Save contact",heading:"Services",
+titles:["Graphic Design","Printing","Promotional Products & Gifts","Apparel Printing","Advertising Applications"],
+desc:["Logos · Corporate identity · Social media","Business cards · Flyers · Printed materials · Labels","Pens · Mugs · Keyrings · Lighters · Caps","T-shirts · Sweatshirts · Workwear","Stickers · Signs · Vehicle graphics"],
+offer:"Have an idea? Contact us for a custom quote.",qr:"Share digital card",note:"Scan the QR code to open the card."},
+bg:{
+call:"☎ Обаждане",save:"▣ Запази контакт",heading:"Услуги",
+titles:["Графичен дизайн","Печат","Рекламни продукти и подаръци","Печат върху облекло","Рекламни приложения"],
+desc:["Лога · Фирмена идентичност · Социални мрежи","Визитки · Флаери · Печатни материали · Етикети","Химикалки · Чаши · Ключодържатели · Запалки · Шапки","Тениски · Суитшърти · Работно облекло","Стикери · Табели · Брандиране на автомобили"],
+offer:"Имате идея? Свържете се с нас за индивидуална оферта.",qr:"Споделяне на дигиталната визитка",note:"Сканирайте QR кода."},
+de:{
+call:"☎ Anrufen",save:"▣ Kontakt speichern",heading:"Leistungen",
+titles:["Grafikdesign","Druck","Werbeartikel & Geschenke","Textildruck","Werbetechnik"],
+desc:["Logos · Corporate Design · Social Media","Visitenkarten · Flyer · Drucksachen · Etiketten","Kugelschreiber · Tassen · Schlüsselanhänger · Feuerzeuge · Kappen","T-Shirts · Sweatshirts · Arbeitskleidung","Aufkleber · Schilder · Fahrzeugbeschriftung"],
+offer:"Sie haben eine Idee? Kontaktieren Sie uns für ein individuelles Angebot.",qr:"Digitale Visitenkarte teilen",note:"QR-Code scannen, um die Karte zu öffnen."},
+ru:{
+call:"☎ Позвонить",save:"▣ Сохранить контакт",heading:"Услуги",
+titles:["Графический дизайн","Печать","Рекламные сувениры и подарки","Печать на одежде","Рекламное оформление"],
+desc:["Логотипы · Фирменный стиль · Социальные сети","Визитки · Листовки · Печатная продукция · Этикетки","Ручки · Кружки · Брелоки · Зажигалки · Кепки","Футболки · Толстовки · Рабочая одежда","Наклейки · Вывески · Брендирование автомобилей"],
+offer:"Есть идея? Свяжитесь с нами для индивидуального предложения.",qr:"Поделиться цифровой визиткой",note:"Отсканируйте QR-код."},
+hy:{
+call:"☎ Զանգահարել",save:"▣ Պահպանել կոնտակտը",heading:"Ծառայություններ",
+titles:["Գրաֆիկական դիզայն","Տպագրություն","Գովազդային իրեր և նվերներ","Տպագրություն հագուստի վրա","Գովազդային ձևավորում"],
+desc:["Լոգոտիպեր · Ֆիրմային ոճ · Սոցիալական ցանցեր","Այցեքարտեր · Թռուցիկներ · Տպագիր նյութեր · Պիտակներ","Գրիչներ · Բաժակներ · Բանալու կախազարդեր · Կրակայրիչներ · Գլխարկներ","Շապիկներ · Սվիտշերտներ · Աշխատանքային հագուստ","Կպչուն պիտակներ · Ցուցանակներ · Մեքենաների ձևավորում"],
+offer:"Գաղափար ունե՞ք։ Կապվեք մեզ հետ անհատական առաջարկի համար։",qr:"Կիսվել թվային այցեքարտով",note:"Սկանավորեք QR կոդը։"},
+sq:{
+call:"☎ Telefono",save:"▣ Ruaj kontaktin",heading:"Shërbimet",
+titles:["Dizajn grafik","Printime","Artikuj promocionalë dhe dhurata","Printim në veshje","Aplikime reklamuese"],
+desc:["Logo · Identitet korporativ · Rrjete sociale","Kartëvizita · Fletëpalosje · Materiale të printuara · Etiketa","Stilolapsa · Filxhanë · Mbajtëse çelësash · Çakmakë · Kapele","Bluza · Xhupa · Veshje pune","Ngjitëse · Tabela · Reklama në automjete"],
+offer:"Keni një ide? Na kontaktoni për një ofertë të personalizuar.",qr:"Ndaj kartëvizitën digjitale",note:"Skano kodin QR për të hapur kartëvizitën."}
 };
-document.getElementById("language").addEventListener("change",function(){
-let t=translations[this.value];
-document.documentElement.lang=this.value;
-["call","save","heading","services","place","qrheading"].forEach((id,i)=>document.getElementById(id).textContent=t[i]);
-});
+const icons=["🎨","🖨️","🎁","👕","🚗"];
+function translate(lang){
+const t=data[lang]||data.el;
+document.documentElement.lang=lang;
+document.getElementById("call").textContent=t.call;
+document.getElementById("save").textContent=t.save;
+document.getElementById("heading").textContent=t.heading;
+document.getElementById("offer").textContent=t.offer;
+document.getElementById("qrheading").textContent=t.qr;
+document.getElementById("qrnote").textContent=t.note;
+document.getElementById("services").innerHTML=t.titles.map((title,i)=>`<div class="service"><div class="ico">${icons[i]}</div><div><strong>${title}</strong><span>${t.desc[i]}</span></div></div>`).join("");
+}
+document.getElementById("language").addEventListener("change",e=>translate(e.target.value));
+translate("el");
 const vcard="BEGIN:VCARD\r\nVERSION:3.0\r\nFN:INK MOTION GR\r\nORG:INK MOTION GR\r\nTEL;TYPE=WORK:+306945023217\r\nEMAIL:inkmotiongr@gmail.com\r\nURL:https://inkmotion-design.my.canva.site/\r\nEND:VCARD";
 document.getElementById("save").addEventListener("click",function(e){
 e.preventDefault();
 const a=document.createElement("a");
-a.href=URL.createObjectURL(new Blob([vcard],{type:"text/vcard"}));
-a.download="INK-MOTION-GR.vcf";
+const url=URL.createObjectURL(new Blob([vcard],{type:"text/vcard"}));
+a.href=url;a.download="INK-MOTION-GR.vcf";
 document.body.appendChild(a);a.click();a.remove();
+setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
 if(window.QRCode && location.protocol==="https:"){
 new QRCode(document.getElementById("qrcode"),{
 text:"https://inkmotiongr-code.github.io/",
-width:190,height:190,
+width:145,height:145,
 correctLevel:QRCode.CorrectLevel.H
 });
 }else{
-document.getElementById("qrnote").textContent="Το QR θα εμφανιστεί όταν δημοσιευτεί η κάρτα.";
+document.getElementById("qrnote").textContent="Το QR θα εμφανιστεί στην online κάρτα.";
 }
 </script>
 </body>
