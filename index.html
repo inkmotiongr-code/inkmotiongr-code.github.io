@@ -130,6 +130,7 @@ document.getElementById("services").innerHTML=t.titles.map((title,i)=>`<div clas
 }
 document.getElementById("language").addEventListener("change",e=>translate(e.target.value));
 translate("el");
+console.log("QR library:", typeof QRCode);
 const vcard="BEGIN:VCARD\r\nVERSION:3.0\r\nFN:INK MOTION GR\r\nORG:INK MOTION GR\r\nTEL;TYPE=WORK:+306945023217\r\nEMAIL:inkmotiongr@gmail.com\r\nURL:https://inkmotion-design.my.canva.site/\r\nEND:VCARD";
 document.getElementById("save").addEventListener("click",function(e){
 e.preventDefault();
