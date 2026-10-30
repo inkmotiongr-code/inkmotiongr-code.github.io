@@ -140,7 +140,7 @@ document.body.appendChild(a);a.click();a.remove();
 setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
 
-if(window.QRCode && location.protocol==="https"){
+if(window.QRCode){
   const qrBox=document.getElementById("qrcode");
   qrBox.innerHTML="";
   qrBox.style.position="relative";
