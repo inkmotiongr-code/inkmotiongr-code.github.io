@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>INK MOTION GR | Digital Card</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at top,#421634,#10121b 55%,#080910);color:white;font-family:Arial,sans-serif}
+.card{max-width:450px;margin:30px auto;padding:22px;background:#191b26;border:1px solid #393747;border-radius:24px}
+.lang{text-align:right}
+select{background:#292b39;color:white;border:1px solid #4c4c60;border-radius:10px;padding:9px;max-width:155px}
+header{text-align:center;padding:15px 0}
+.logo{display:block;width:100%;max-height:220px;object-fit:contain}
+.fallback{font-size:32px;font-weight:900;color:#f32491}
+.tag{font-size:12px;letter-spacing:2px;color:#ddd}
+.place{color:#ccc;font-size:14px;margin-top:12px}
+.buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.buttons a{background:#2d3040;color:white;text-decoration:none;text-align:center;border-radius:12px;padding:17px 5px;font-weight:bold}
+.buttons a:hover{background:#46495d}
+.buttons .save{grid-column:span 2;background:#dc168b}
+h2{font-size:19px;margin-top:30px}
+p{font-size:14px;color:#d1d1dc;line-height:1.7}
+.qr{text-align:center;background:#252633;padding:18px;border-radius:15px;margin-top:24px}
+#qrcode{display:flex;justify-content:center;margin:15px}
+#qrcode img{border:12px solid white;border-radius:8px;max-width:100%}
+small{color:#aaa}
+@media(max-width:480px){.card{margin:10px;padding:17px}}
+</style>
+</head>
+<body>
+<main class="card">
+<div class="lang">
+<select id="language" aria-label="Language">
+<option value="el">🇬🇷 Ελληνικά</option>
+<option value="en">🇬🇧 English</option>
+<option value="bg">🇧🇬 Български</option>
+<option value="de">🇩🇪 Deutsch</option>
+<option value="ru">🇷🇺 Русский</option>
+<option value="hy">🇦🇲 Հայերեն</option>
+<option value="sq">🇦🇱 Shqip</option>
+</select>
+</div>
+<header>
+<img class="logo" src="logo.png" alt="INK MOTION GR" onerror="this.style.display='none';document.querySelector('.fallback').hidden=false">
+<div class="fallback" hidden>INK MOTION GR</div>
+<p class="tag">DESIGN · PRINT · ADVERTISING</p>
+<div class="place" id="place">📍 Θεσσαλονίκη, Ελλάδα</div>
+</header>
+<section class="buttons">
+<a href="tel:+306945023217" id="call">☎ Κλήση</a>
+<a href="mailto:inkmotiongr@gmail.com">✉ Email</a>
+<a href="https://www.instagram.com/inkmotiongr/" target="_blank" rel="noopener">◎ Instagram</a>
+<a href="https://www.tiktok.com/@inkmotiongr" target="_blank" rel="noopener">♫ TikTok</a>
+<a href="https://inkmotion-design.my.canva.site/" target="_blank" rel="noopener">🌐 Portfolio</a>
+<a href="viber://chat?number=%2B306945023217">◉ Viber</a>
+<a href="#" class="save" id="save">▣ Αποθήκευση επαφής</a>
+</section>
+<h2 id="heading">Υπηρεσίες</h2>
+<p id="services">Γραφιστικός σχεδιασμός · Εκτυπώσεις · Διαφημιστικές εφαρμογές · Αυτοκόλλητα · Επαγγελματικές κάρτες · Ετικέτες · Custom T-shirts</p>
+<div class="qr">
+<h2 id="qrheading">Σκάναρε την ψηφιακή κάρτα</h2>
+<div id="qrcode"></div>
+<small id="qrnote">QR προς αυτή την ιστοσελίδα</small>
+</div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const translations={
+el:["☎ Κλήση","▣ Αποθήκευση επαφής","Υπηρεσίες","Γραφιστικός σχεδιασμός · Εκτυπώσεις · Διαφημιστικές εφαρμογές · Αυτοκόλλητα · Επαγγελματικές κάρτες · Ετικέτες · Custom T-shirts","📍 Θεσσαλονίκη, Ελλάδα","Σκάναρε την ψηφιακή κάρτα"],
+en:["☎ Call","▣ Save contact","Services","Graphic design · Printing · Advertising applications · Stickers · Business cards · Labels · Custom T-shirts","📍 Thessaloniki, Greece","Scan the digital card"],
+bg:["☎ Обаждане","▣ Запази контакт","Услуги","Графичен дизайн · Печат · Рекламни приложения · Стикери · Визитки · Етикети · Тениски по поръчка","📍 Солун, Гърция","Сканирай дигиталната визитка"],
+de:["☎ Anrufen","▣ Kontakt speichern","Leistungen","Grafikdesign · Druck · Werbetechnik · Aufkleber · Visitenkarten · Etiketten · Individuelle T-Shirts","📍 Thessaloniki, Griechenland","Digitale Visitenkarte scannen"],
+ru:["☎ Позвонить","▣ Сохранить контакт","Услуги","Графический дизайн · Печать · Рекламное оформление · Наклейки · Визитки · Этикетки · Футболки на заказ","📍 Салоники, Греция","Сканируйте цифровую визитку"],
+hy:["☎ Զանգահարել","▣ Պահպանել կոնտակտը","Ծառայություններ","Գրաֆիկական դիզայն · Տպագրություն · Գովազդային ձևավորում · Կպչուն պիտակներ · Այցեքարտեր · Պիտակներ · Անհատականացված շապիկներ","📍 Սալոնիկ, Հունաստան","Սկանավորեք թվային այցեքարտը"],
+sq:["☎ Telefono","▣ Ruaj kontaktin","Shërbimet","Dizajn grafik · Printime · Aplikime publicitare · Ngjitëse · Kartëvizita · Etiketa · Bluza të personalizuara","📍 Selanik, Greqi","Skano kartëvizitën digjitale"]
+};
+document.getElementById("language").addEventListener("change",function(){
+let t=translations[this.value];
+document.documentElement.lang=this.value;
+["call","save","heading","services","place","qrheading"].forEach((id,i)=>document.getElementById(id).textContent=t[i]);
+});
+const vcard="BEGIN:VCARD\r\nVERSION:3.0\r\nFN:INK MOTION GR\r\nORG:INK MOTION GR\r\nTEL;TYPE=WORK:+306945023217\r\nEMAIL:inkmotiongr@gmail.com\r\nURL:https://inkmotion-design.my.canva.site/\r\nEND:VCARD";
+document.getElementById("save").addEventListener("click",function(e){
+e.preventDefault();
+const a=document.createElement("a");
+a.href=URL.createObjectURL(new Blob([vcard],{type:"text/vcard"}));
+a.download="INK-MOTION-GR.vcf";
+document.body.appendChild(a);a.click();a.remove();
+});
+if(window.QRCode && location.protocol==="https:"){
+new QRCode(document.getElementById("qrcode"),{
+text:"https://inkmotiongr-code.github.io/",
+width:190,height:190,
+correctLevel:QRCode.CorrectLevel.H
+});
+}else{
+document.getElementById("qrnote").textContent="Το QR θα εμφανιστεί όταν δημοσιευτεί η κάρτα.";
+}
+</script>
+</body>
+</html>
