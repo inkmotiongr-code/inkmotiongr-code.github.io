@@ -65,6 +65,7 @@ small{display:block;color:#aaa;margin-top:12px;font-size:11px}
 <p class="offer" id="offer">Έχετε κάποια ιδέα; Επικοινωνήστε μαζί μας για μια εξατομικευμένη προσφορά.</p>
 <div class="qr">
 <h2 id="qrheading">Κοινοποίηση ψηφιακής κάρτας</h2>
+ <button id="shareCard" type="button" onclick="shareDigitalCard()">📤 Κοινοποίηση κάρτας</button> 
 <div id="qrcode"></div>
 <small id="qrnote">Σκάναρε το QR για να ανοίξεις την κάρτα.</small>
 </div>
@@ -166,6 +167,31 @@ if(window.QRCode){
 }else{
 document.getElementById("qrnote").textContent="Το QR θα εμφανιστεί στην online κάρτα.";
 }
+
+async function shareDigitalCard() {
+  const url = "https://inkmotiongr-code.github.io/";
+
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "INK MOTION GR",
+        text: "Η ψηφιακή κάρτα INK MOTION GR",
+        url: url
+      });
+      return;
+    } catch (error) {
+      if (error.name === "AbortError") return;
+    }
+  }
+
+  try {
+    await navigator.clipboard.writeText(url);
+    alert("Ο σύνδεσμος της κάρτας αντιγράφηκε!");
+  } catch (error) {
+    prompt("Αντέγραψε τον σύνδεσμο της κάρτας:", url);
+  }
+}
+
 </script>
 </body>
 </html>
