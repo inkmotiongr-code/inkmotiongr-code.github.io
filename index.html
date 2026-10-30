@@ -139,12 +139,26 @@ a.href=url;a.download="INK-MOTION-GR.vcf";
 document.body.appendChild(a);a.click();a.remove();
 setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
-if(window.QRCode && location.protocol==="https:"){
-new QRCode(document.getElementById("qrcode"),{
-text:"https://inkmotiongr-code.github.io/",
-width:145,height:145,
-correctLevel:QRCode.CorrectLevel.H
-});
+
+if(window.QRCode && location.protocol==="https"){
+  const qrBox=document.getElementById("qrcode");
+  qrBox.innerHTML="";
+  qrBox.style.position="relative";
+
+  new QRCode(qrBox,{
+    text:"https://inkmotiongr-code.github.io/",
+    width:180,
+    height:180,
+    colorCorrectLevel:QRCode.CorrectLevel.H
+  });
+
+  const logo=document.createElement("img");
+  logo.src="logo.png";
+  logo.alt="INK MOTION GR";
+  logo.style.cssText="position:absolute;width:38px;height:38px;object-fit:contain;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:3px;border-radius:6px;";
+  qrBox.appendChild(logo);
+}
+
 }else{
 document.getElementById("qrnote").textContent="Το QR θα εμφανιστεί στην online κάρτα.";
 }
